@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DistanceActivity.class));
                 break;
             case R.id.show_location_button:
+                startActivity(new Intent(this, LocationActivity.class));
                 break;
         }
     }
