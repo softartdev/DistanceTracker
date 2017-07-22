@@ -5,4 +5,5 @@
     <string name="show_distance">Show distance</string>
     <string name="show_location">Show location</string>
     <string name="title_activity_location">Location</string>
+    <string name="location_tracked_message">Your location will be tracked in the background</string>
 </resources>
