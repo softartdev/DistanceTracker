@@ -1,5 +1,7 @@
 package com.distance_tracker.km;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -30,6 +32,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (isDistanceTrackerServiceRunning()) {
+            showStartedState();
+        } else {
+            showStoppedState();
+        }
+    }
+
+    private boolean isDistanceTrackerServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (DistanceTrackerService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void startTracking() {
+        startService(new Intent(this, DistanceTrackerService.class));
+        showStartedState();
+    }
+
+    private void stopTracking() {
+        stopService(new Intent(this, DistanceTrackerService.class));
+        showStoppedState();
+    }
+
+    private void showStartedState() {
+        startTrackingButton.setVisibility(View.GONE);
+        stopTrackingButton.setVisibility(View.VISIBLE);
+    }
+
+    private void showStoppedState() {
+        startTrackingButton.setVisibility(View.VISIBLE);
+        stopTrackingButton.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_tracking_button:
@@ -41,8 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 alertDialog.show();
                 break;
             case R.id.stop_tracking_button:
-                startTrackingButton.setVisibility(View.VISIBLE);
-                stopTrackingButton.setVisibility(View.GONE);
+                stopTracking();
                 break;
             case R.id.show_distance_button:
                 startActivity(new Intent(this, DistanceActivity.class));
@@ -57,12 +98,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(DialogInterface dialog, int which) {
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
-                startTrackingButton.setVisibility(View.GONE);
-                stopTrackingButton.setVisibility(View.VISIBLE);
+                startTracking();
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
                 dialog.cancel();
                 break;
         }
     }
+
 }

@@ -51,6 +51,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.distance_tracker.km.MainActivity"/>
         </activity>
+
+        <service
+            android:name=".DistanceTrackerService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
