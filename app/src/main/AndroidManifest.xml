@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DistanceActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".ui.DistanceActivity"
+            android:parentActivityName=".ui.MainActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".ui.MainActivity"/>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -45,13 +45,13 @@
             android:value="@string/google_maps_key"/>
 
         <activity
-            android:name=".LocationActivity"
+            android:name=".ui.LocationActivity"
             android:label="@string/title_activity_location"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.MainActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.distance_tracker.km.MainActivity"/>
+                android:value="com.distance_tracker.km.ui.MainActivity"/>
         </activity>
 
         <service

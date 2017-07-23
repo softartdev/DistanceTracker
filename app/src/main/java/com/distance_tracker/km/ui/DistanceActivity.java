@@ -1,7 +1,9 @@
-package com.distance_tracker.km;
+package com.distance_tracker.km.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.distance_tracker.km.R;
 
 public class DistanceActivity extends AppCompatActivity {
 
