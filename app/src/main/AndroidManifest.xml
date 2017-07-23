@@ -46,7 +46,9 @@
 
         <activity
             android:name=".LocationActivity"
-            android:label="@string/title_activity_location">
+            android:label="@string/title_activity_location"
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.distance_tracker.km.MainActivity"/>
